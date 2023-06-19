@@ -1,3 +1,4 @@
+# Modded version of https://community.home-assistant.io/t/z2m-ikea-symfonisk-gen2-e2123-media-control/559523
 blueprint:
   name: Z2M - IKEA Symfonisk sound controller GEN2 for media
   description:
@@ -80,7 +81,7 @@ blueprint:
       default: []
       selector:
         action: {}
-  source_url: https://community.home-assistant.io/t/z2m-ikea-symfonisk-gen2-e2123-media-control/559523
+  source_url: https://github.com/andreapit/HA-Blueprints/blob/8b5ff22889afd841f7d9e7dfe539069560053389/ZHA-IKEA-Symfonisk-sound-controller-for-media.yaml
 mode: restart
 max_exceeded: silent
 trigger_variables:
@@ -139,25 +140,6 @@ action:
                   - service: media_player.volume_down
                     target:
                       entity_id: !input media_player
-              #   sequence:
-              #     - service: media_player.volume_set
-              #       data:
-              #         volume_level:
-              #           '{% set volume = state_attr(player, "volume_level")
-              #           + stepsize %} {{ 1.0 if volume > 1.0 else volume }}'
-              #       target:
-              #         entity_id: !input media_player
-
-              # - conditions: "{{ trigger.payload == 'volume_down_hold' }}"
-              #   sequence:
-              #     - service: media_player.volume_set
-              #       data:
-              #         volume_level:
-              #           '{% set volume = state_attr(player, "volume_level")
-              #           - stepsize %} {{ 0.0 if volume < 0.0 else volume }}'
-              #       target:
-              #         entity_id: !input media_player'
-
               - conditions: "{{ trigger.payload == 'dots_1_short_release' }}"
                 sequence: !input single_dot
               - conditions: "{{ trigger.payload == 'dots_1_double_press' }}"
